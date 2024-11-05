@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/result.css">
+    <title>Prediction Result</title>
+</head>
+
+<body>
+    <header>
+        <h1>Prediction Result</h1>
+    </header>
+    <br>
+    <section>
+        <center>
+            <button onclick="window.print()">Print</button>
+        </center><br>
+        <center><a href="/">Go back to Home</a></center>
+
+        <div class="container">
+            <center>
+                <header class="header">
+                    <h1>Prediction Result</h1>
+                </header>
+
+                <h3 style="color: rgb(109, 1, 98);">Hello {{ patient_name }}, Here is Your Diagnosis Result</h3>
+         
+                <table class="result_table">
+                    <tr>
+                        <th>Patient Name</th>
+                        <td>{{ patient_name }}</td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Email</th>
+                        <td>{{ patient_email }}</td>
+                    </tr> -->
+                    <tr>
+                        <th>Ocular Disease Result</th>
+                        <td><strong style="color: red;">{% if predicted_diseases[0].label != 'No diseases detected' %}
+                                {{ predicted_diseases | map(attribute='label') | join(', ') }} {% else %} {{
+                                predicted_diseases[0].label }} {% endif %}</strong></td>
+                    </tr>
+                    <tr>
+                        <th>Level</th>
+                        <td>{{ type_of_diabetes }}</td>
+                    </tr>
+                    <tr>
+                        <th>confidence score</th>
+                        <td>{% for disease in predicted_diseases %}
+                            <strong>{{ disease.probability | round(2) }}%</strong>
+                            {% endfor %}
+                        </td>
+                    </tr> 
+                </table>
+
+                <!-- Add images below the table -->
+                <div class="images-container">
+                    <h3>Fundus Images</h3>
+                    <div class="images-container2">
+                        <div class="image-box">
+                            <h4>Left Fundus Image</h4>
+                            <img width="100" src="/static/uploads/{{ left_image }}" alt="Left Fundus Image"
+                                class="fundus-image">
+                        </div>
+                        <div class="image-box">
+                            <h4>Right Fundus Image</h4>
+                            <img width="100" src="/static/uploads/{{ right_image }}" alt="Right Fundus Image"
+                                class="fundus-image">
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Contact Us: +91 7498489467</h3>
+            </center>
+        </div>
+        <br>
+
+        <center>
+            <h4>Confidence Levels for All Classes:</h4>
+            <ul style="list-style: none;">
+                {% for disease in all_diseases_probabilities %}
+                <li>{{ disease.label }}: {{ disease.probability | round(2) }}%</li>
+                {% endfor %}
+            </ul>
+        </center>
+
+    </section>
+</body>
+
+</html>

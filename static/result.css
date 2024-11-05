@@ -1,0 +1,102 @@
+/* Result Page Styles */
+.container {
+    background-color: #ffffff;
+    width: 80%;
+    max-width: 800px; /* Set a max width for larger screens */
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+ 
+
+h3 {
+    color: rgb(109, 1, 98);
+}
+
+.result_table {
+    width: 90%; /* Full width for better alignment */
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #40c62594; /* Slightly lighter background */
+}
+
+.result_table th,
+.result_table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.result_table th {
+    background-color: #4CAF50;
+    color: white;
+}
+ 
+.images-container {
+    margin-top: 20px;
+}
+
+.images-container2 {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Space between images */
+}
+
+.image-box {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.image-box:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+.image-box h4 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.fundus-image {
+    width: 150px; /* Adjust image size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px;
+}
+
+.type_di {
+    margin-top: 2rem;
+}
+
+hr {
+    border: 1px solid #ddd; /* Standardize hr style */
+}
+
+h3 {
+    margin: 10px 0; /* Space above and below h3 */
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .container,
+    .container * {
+        visibility: visible;
+    }
+
+    .container {
+        position: absolute; 
+        left: 0;
+        top: 0;
+        height: 100vh;
+    }
+
+    button {
+        display: none; /* Hide print button during printing */
+    }
+}
